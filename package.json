@@ -11,6 +11,7 @@
   "dependencies": {
     "file-type": "^18.2.0",
     "js-file-download": "^0.4.12",
+    "jszip": "^3.10.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-media": "^1.10.0",
