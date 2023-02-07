@@ -21,8 +21,9 @@ const Serach = () => {
           }
         )
         .then((res) => {
+          // low quality
           console.log("res data yt",res.data);
-          console.log(download);
+          // console.log(download);
           setdownload();
           const datas = URL.createObjectURL(res.data);
           const link = document.createElement("a");

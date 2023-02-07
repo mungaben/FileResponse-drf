@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 
 
 
-
+import {CgSearch } from "react-icons/cg";
 import axios from "axios";
 // import Store from "./Mystore";
 
 const Searchtab = ({setdata}) => {
   // console.log(data)
-  const [search, setsearch] = useState("futa");
+  const [search, setsearch] = useState("Benito");
   const [reload, setreload] = useState(true);
   // const [data, setdata] = useState();
 
@@ -36,17 +36,18 @@ const Searchtab = ({setdata}) => {
   },[reload]);
 
   return (
-    <div>
-      <div>
-        <form action="" method="post" onSubmit={handle_form}>
+    <div className=" fixed  p-5 w-full rounded-lg    bg-transparent">
+      <div className=" flex justify-center items-center mt-2  bg-right-bottom  ">
+        <form action="" method="post" onSubmit={handle_form} className="bg-transparent p-2">
           <input
+          className=" outline-none hover:rounded-xl rounded-md hover:shadow-xl text-center text-lg font-black capitalize hover:bg-slate-300"
             type="text"
             name="search"
             id="serbtn"
             placeholder=" search videos"
             onChange={(e) => setsearch(e.target.value)}
           />
-          <button type="submit" onClick={()=>setreload(!reload)}>search</button>
+          <button type="submit" onClick={()=>setreload(!reload)} className="text-center  text-lg hover:bg-slate-200 rounded-lg  scale-125 "> &#128073; </button>
         </form>
       </div>
       
