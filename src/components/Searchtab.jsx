@@ -1,12 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
-import axios from "axios";
-import ReactPlayer from "react-player";
-import Displayvideo from "./Displayvideo";
+import React, { useEffect, useState } from "react";
 
-const Search = () => {
+
+
+
+import axios from "axios";
+// import Store from "./Mystore";
+
+const Searchtab = ({setdata}) => {
+  // console.log(data)
   const [search, setsearch] = useState("futa");
   const [reload, setreload] = useState(true);
-  const [mydata, setdata] = useState(["dNbDUhzW6gg", "SCoUCIVicVs"]);
+  // const [data, setdata] = useState();
+
+// get video ids from django based on search inputs
   const get_data = () => {
     const search_video = axios
       .post("http://localhost:8000/downloads/get_videos/", {
@@ -20,18 +26,14 @@ const Search = () => {
         console.log(errors);
       });
   };
-  mydata.map((dats, ind) => {
-    console.log(dats);
-  });
-
   const handle_form = (e) => {
     e.preventDefault();
-    setreload(false);
+    
   };
+
   useEffect(() => {
     get_data();
-  }, [reload]);
-  console.log(mydata.length);
+  },[reload]);
 
   return (
     <div>
@@ -44,12 +46,12 @@ const Search = () => {
             placeholder=" search videos"
             onChange={(e) => setsearch(e.target.value)}
           />
-          <button type="submit">search</button>
+          <button type="submit" onClick={()=>setreload(!reload)}>search</button>
         </form>
       </div>
-      <div>{<Displayvideo mydata={mydata} />}</div>
+      
     </div>
   );
 };
 
-export default Search;
+export default Searchtab;
