@@ -1,11 +1,17 @@
 import axios from 'axios'
 import React from 'react'
 import {useForm } from 'react-hook-form'
+import { redirect, useNavigate } from 'react-router-dom'
 
 const Login = () => {
     const{register,watch,handleSubmit,formState:{errors}}=useForm()
     const email=watch("email")
     const password=watch("password")
+
+    const navigate=useNavigate()
+    const go_register=()=>{
+      navigate("/")
+    }
 
     const login_user=()=>{
         const login=axios.post("http://127.0.0.1:8000/api/token/",{
@@ -13,10 +19,13 @@ const Login = () => {
             password:password
         }).then((res)=>{
             console.log(res.data)
-            localStorage.setItem("refresh",res.data.refresh)
-            localStorage.setItem("refresh",res.data.access)
+            localStorage.setItem("access",JSON.stringify(res.data.access))
+            localStorage.setItem("refresh",JSON.stringify(res.data.refresh))
+            navigate("/homepage")
             if(res.status==200){
                 // take to home page
+                
+
 
             }
 
@@ -43,6 +52,9 @@ const Login = () => {
        
          <button type="submit" className=' flex items-center justify-center text-center text-xl rounded-lg  md:m-8 m-4 hover:bg-slate-200'> submit</button>
      </form>
+
+     <div onClick={go_register} className=" flex justify-center items-center  font-light md:m-8 m-4 rounded-md bg-slate-400 hover:shadow-lg p-1 text-center hover:text-slate-50 hover:text-lg" > <button  >Register</button> </div>
+      
     
     
     </div>

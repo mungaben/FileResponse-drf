@@ -9,9 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "dayjs": "^1.11.7",
     "file-type": "^18.2.0",
     "js-file-download": "^0.4.12",
     "jszip": "^3.10.1",
+    "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.1",

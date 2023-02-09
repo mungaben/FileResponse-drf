@@ -5,20 +5,23 @@ import Searchvideo from "./components/Searchvideo";
 import VideoList from "./components/VideoList";
 import Register from "./components/Register";
 import Login from "./components/Login";
-// import js-file-download from 'js-file-download'
-// var fileDownload = require('js-file-download');
+
+
+import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
 
 function App() {
   
   return (
     <div className="App">
-      {/* <Searchvideo /> */}
-      {/* <VideoList/> */}
-      {/* <Serach/> */}
-      {/* <Register/> */}
-      <Login/>
+     
       
-      
+      <Router>
+        <Routes>
+        <Route path='/'  element={<Register/>}/>
+        <Route path='/Login' element={<Login/>}/>
+        <Route path='/homepage' element={<Serach/>}/>
+        </Routes>   
+      </Router>
       
     </div>
   );

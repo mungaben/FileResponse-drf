@@ -6,8 +6,8 @@ import {CgSearch } from "react-icons/cg";
 import axios from "axios";
 // import Store from "./Mystore";
 
-const Searchtab = ({setdata}) => {
-  // console.log(data)
+const Searchtab = ({setdata,access}) => {
+  console.log("access token",access)
   const [search, setsearch] = useState("Benito");
   const [reload, setreload] = useState(true);
   // const [data, setdata] = useState();
@@ -17,6 +17,8 @@ const Searchtab = ({setdata}) => {
     const search_video = axios
       .post("http://localhost:8000/downloads/get_videos/", {
         urlm: search,
+      },{
+        headers:{Authorization:`Bearer ${access}`}
       })
       .then((res) => {
         console.log(res.data);

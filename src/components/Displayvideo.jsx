@@ -2,14 +2,18 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 
-const Displayvideo = ({ data, setdownload }) => {
+const Displayvideo = ({ data, setdownload ,access}) => {
   console.log("data", data);
   const [reload, setReload] = useState(true);
   const [homedata, sethomedata] = useState();
 
   const homepage_data = () => {
+    console.log("halllooo")
     const hompage = axios
-      .get("http://localhost:8000/downloads/get_videos/")
+      .get("http://localhost:8000/downloads/get_videos/",{
+        headers:{Authorization:`Bearer ${access}`}
+        
+      })
       .then((res) => {
         console.log("datasss", res.data);
         sethomedata(res.data);
@@ -20,6 +24,8 @@ const Displayvideo = ({ data, setdownload }) => {
   };
   useEffect(() => {
     homepage_data();
+    console.log("helooooo")
+
   }, [reload]);
 
   if (data) {
