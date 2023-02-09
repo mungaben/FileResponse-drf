@@ -4,6 +4,7 @@ import Mystore from "./components/Mystore";
 import Searchvideo from "./components/Searchvideo";
 import VideoList from "./components/VideoList";
 import Register from "./components/Register";
+import Login from "./components/Login";
 // import js-file-download from 'js-file-download'
 // var fileDownload = require('js-file-download');
 
@@ -14,7 +15,8 @@ function App() {
       {/* <Searchvideo /> */}
       {/* <VideoList/> */}
       {/* <Serach/> */}
-      <Register/>
+      {/* <Register/> */}
+      <Login/>
       
       
       
