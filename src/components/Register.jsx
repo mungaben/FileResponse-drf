@@ -4,7 +4,9 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
+
 const Register = () => {
+  const [registed, setregisted] = useState(false)
   const {
     register,
     handleSubmit,
@@ -12,16 +14,18 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-
   const email = watch("email");
   const password = watch("password");
   const name = watch("name");
-  const navigate=useNavigate()
-  const go_login=()=>{
-    navigate("/Login")
+  const navigate = useNavigate();
+  const go_login = () => {
+    navigate("/Login");
+  };
+  const go_home=()=>{
+    navigate("/homepage")
   }
 
-  const Register_user = async () => {
+  const Register_user =  () => {
     const data = axios
       .post("http://localhost:8000/downloads/user/register/", {
         email: email,
@@ -29,28 +33,29 @@ const Register = () => {
         name: name,
       })
       .then((res) => {
-        console.log("res data", res.status);
-        userdata && setuserdata();
-
-        if (res.status == 400) {
-          console.log("alredy registed");
-        } else res.status == 200;
-        {
-          console.log("user created");
-        }
+        // console.log("res data", res.status);
+        userdata && setuserdata() 
+        go_home()
+        setregisted(true)
+        console.log(registed)
+        
+        
       })
       .catch((errors) => {
-        console.log("errors", errors);
-        if (errors.response.status == 400) {
-          console.log("useralredy exists");
-        }
+        // console.log("errors", errors);
+      
+          // console.log("useralredy exists");
+          navigate("/Login");
+       
       });
   };
 
   const get_data = (data) => {
-    console.log("datas", data);
+    // console.log("datas", data);
+   
 
     Register_user();
+    setregisted(false)
   };
 
   return (
@@ -95,11 +100,16 @@ const Register = () => {
             type="submit"
             className=" flex items-center justify-center text-center text-xl rounded-lg  md:m-8 m-4 hover:bg-slate-200"
           >
-            
             Register
           </button>
         </form>
-        <div onClick={go_login} className=" flex justify-center items-center  font-light md:m-8 m-4 rounded-md bg-slate-400 hover:shadow-lg p-1 text-center hover:text-slate-50 hover:text-lg" > <button >  Login</button> </div>
+        <div
+          
+          className=" flex justify-center items-center  font-light md:m-8 m-4 rounded-md bg-slate-400 hover:shadow-lg p-1 text-center hover:text-slate-50 hover:text-lg"
+        >
+          
+          {registed ? <button onClick={go_home}> Homepage </button>:<button onClick={go_login}> Login</button>}
+        </div>
       </div>
     </div>
   );

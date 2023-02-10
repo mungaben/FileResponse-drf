@@ -2,20 +2,17 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 
-const Displayvideo = ({ data, setdownload ,access}) => {
-  console.log("data", data);
+const Displayvideo = ({ data, setdownload, access }) => {
+  // console.log("data", data);
   const [reload, setReload] = useState(true);
   const [homedata, sethomedata] = useState();
 
   const homepage_data = () => {
-    console.log("halllooo")
     const hompage = axios
-      .get("http://localhost:8000/downloads/get_videos/",{
-        headers:{Authorization:`Bearer ${access}`}
-        
+      .get("http://localhost:8000/downloads/get_videos/", {
+        headers: { Authorization: `Bearer ${access}` },
       })
       .then((res) => {
-        console.log("datasss", res.data);
         sethomedata(res.data);
       })
       .catch((errors) => {
@@ -24,19 +21,17 @@ const Displayvideo = ({ data, setdownload ,access}) => {
   };
   useEffect(() => {
     homepage_data();
-    console.log("helooooo")
-
   }, [reload]);
 
   if (data) {
     const mydatas = data.slice(1 - 13);
-    console.log(mydatas);
+
     return (
       <div className=" mt-2 bg-slate-300  p-2 overflow-x-scroll">
         <div className=" grid md:grid-cols-3 sm:grid-cols-1 gap-4 ">
           {mydatas.map((ids, index) => {
             const urls = `https://www.youtube.com/watch?v=${ids}`;
-            console.log(urls);
+
             return (
               <div key={index}>
                 <div>
