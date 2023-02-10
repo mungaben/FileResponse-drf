@@ -44,7 +44,7 @@ const Serach = () => {
   if (download) {
     // redirect("http://localhost:8000/downloads/video/");
 
-    console.log("hello");
+ 
     const get_video = () => {
       axios
         .post(
